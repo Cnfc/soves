@@ -17,4 +17,22 @@ code {
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
+  margin: 10px;
+  padding: 10px;
+}
+
+.menu {
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+.menu div {
+  padding: 3px;
+}
+
+.radio_group {
+  display: flex;
+  justify-content: space-around;
 }

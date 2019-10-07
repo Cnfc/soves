@@ -6,7 +6,7 @@ const Cart = (props) => {
   return (
     <div className='container'> 
       
-      {props.data.map(({ price, title, id, image, category }) => (
+      {props.products.map(({ price, title, id, image, category }) => (
         <div className="CartItem" key={id}>
         
           <img src={image} alr={`${image}, ${id}`} />
@@ -15,6 +15,8 @@ const Cart = (props) => {
           <span> Category: { category.title }</span>
         </div>
       ))}
+      
+
       
       
 
