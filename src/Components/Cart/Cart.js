@@ -6,10 +6,13 @@ const Cart = (props) => {
   return (
     <div className='container'> 
       
-      {props.data.map((item) => (
-        <div className="CartItem" key={item.id}>
-          <span>{item.price}</span>
-          <span>{item.title}</span>
+      {props.data.map(({ price, title, id, image, category }) => (
+        <div className="CartItem" key={id}>
+        
+          <img src={image} alr={`${image}, ${id}`} />
+          <span> { title } </span>
+          <span> Price: { price } </span>
+          <span> Category: { category.title }</span>
         </div>
       ))}
       

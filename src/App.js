@@ -1,6 +1,10 @@
 import React, { Component } from "react";
 import Cart from "./Components/Cart/Cart";
 
+
+
+
+
 const link = "http://www.mocky.io/v2/5d944b9f2f00006b008ff619";
 
 class App extends Component {
@@ -26,7 +30,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="main">
         <h1>App</h1>
         
         <div onClick={this.renderCart}>
