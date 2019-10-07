@@ -1,0 +1,7 @@
+.Cart {
+}
+.CartItem {
+  width: 400px;
+  height: 150px;
+  border: 2px solid red;
+}

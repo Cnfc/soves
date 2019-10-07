@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import Cart from "./Components/Cart/Cart";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const link = "http://www.mocky.io/v2/5d944b9f2f00006b008ff619";
+
+class App extends Component {
+  state = {
+    isLoading: true,
+    data: {},
+  };
+
+  async componentDidMount() {
+    const res = await fetch(link);
+    const data = await res.json();
+
+    this.setState({
+      data
+    })
+  }
+  
+  renderCart = () => {
+    this.setState({
+      isLoading: false,
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>App</h1>
+        
+        <div onClick={this.renderCart}>
+
+          Click Here to render
+        </div>
+
+        {this.state.isLoading 
+          ? <span>LOADNIG</span> 
+          : <Cart data={this.state.data.data} />
+        }
+
+      </div>
+    );
+  }
 }
 
 export default App;
