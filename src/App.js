@@ -3,7 +3,7 @@ import Cart from "./Components/Cart/Cart";
 import MenuToRender from "./Components/MenuToRender/MenuToRender";
 
 
-const link = "http://www.mocky.io/v2/5d944b9f2f00006b008ff619";
+const link = "https://www.mocky.io/v2/5d944b9f2f00006b008ff619";
 
 class App extends Component {
   state = {
