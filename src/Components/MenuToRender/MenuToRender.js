@@ -6,26 +6,35 @@ import Cart from '../Cart/Cart';
 
 class MenuToRender extends Component {
 
-
-
-
   render() {
     return (
       <div  className='main' onClick={this.handleClick}>
 
         <span>Total products: {this.props.count}</span>
 
-        <form onClick={this.formCEvent} className='menu'>
+        <form className='menu'>
 
           <div className='radio_group'>
-            <button onClick={this.props.handleLessMinimum}>less 5000</button>
-            <button>more 5000</button>
+            <input 
+              type='radio'
+              value="true"
+              checked={this.props.selectRadioOption === true}
+              onChange={this.props.radioChange}
+              /> Yes
+
+
+             <input 
+              type='radio'
+              value="false"
+              checked={this.props.selectRadioOption === false}
+              onChange={this.props.radioChange}
+            /> Nop
           </div>
 
           <div onClick={this.props.isAvailable}>Check if Available</div>
 
           <div>
-            <select id="lang" onChange={this.props.change} value={this.props.value}>
+            <select id="lang" onChange={this.props.change} value={this.props.checkBoxValue}>
               <option value="select">Select</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -34,7 +43,7 @@ class MenuToRender extends Component {
 
             </select>
           </div>
-          
+
           <div onClick={this.props.reset}>Reset</div>
        </form>
     </div>

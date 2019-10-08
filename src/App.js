@@ -10,7 +10,8 @@ class App extends Component {
     isLoading: true,
     products: [],
     filteredProducts: [],
-    value: ''
+    checkBoxValue: '',
+    selectRadioOption: null
   };
 
   async componentDidMount() {
@@ -41,8 +42,6 @@ class App extends Component {
     let temp = [];
     for(let i of this.state.filteredProducts) {
       if(i.quantity > 0) {
-
-        console.log(i)
         temp.push(i)
       }
     }
@@ -69,16 +68,32 @@ class App extends Component {
     })
   }
 
+  // Reset all settings
   reset = () => {
     let products = this.state.products
     this.setState({
       filteredProducts: products
     })
   }
+
+  radioChange = (e) => {
+    this.setState( () => {
+      this.state.selectRadioOption= e.target.value
+    })     
+    
+  }
+
+  removeItem = (id) => {
+    this.setState({
+      filteredProducts: this.state.filteredProducts.filter(n => n.id !== id)
+    })
+  }
   
   
-  
-  render() {
+   
+    render() {
+
+      // console.log(this.state.selectRadioOption)
     return (
       <div onClick={this.renderCart} className="main">
 
@@ -96,14 +111,19 @@ class App extends Component {
                   handleLessMinimum={this.handleLessMinimum}
                   isAvailable={this.isAvailable}
                   change={this.findCategory}
-                  value={this.state.value}
+                  checkBoxValue={this.state.checkBoxValue}
                   reset={this.reset}
-                />
+                  checked={this.state.selectRadioOption}
+                  radioChange={this.radioChange}
+                  radioDispay={this.radioDispay}
+                  
+                  />
                 <hr/>
                 <Cart 
                   products={this.state.filteredProducts}
                   handleAddToCart={this.handleAddToCart}
                   handleRemoveFromCart={this.handleRemoveFromCart}
+                  onRemove={id => this.removeItem(id)}
                 /> 
            
               </>

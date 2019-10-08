@@ -4,10 +4,10 @@ import './style.css';
 
 const Cart = (props) => {
   return (
-    <div className='container'> 
+    <div className='container' > 
       
       {props.products.map(({ price, title, id, image, category }) => (
-        <div className="CartItem" key={id}>
+        <div className="CartItem" key={id} onClick={evt => props.onRemove(id)} >
         
           <img src={image} alr={`${image}, ${id}`} />
           <span> { title } </span>
