@@ -11,7 +11,8 @@ class App extends Component {
     products: [],
     filteredProducts: [],
     checkBoxValue: '',
-    selectRadioOption: null
+    selectRadioOption: null,
+    fixValueMax:5000
   };
 
   async componentDidMount() {
@@ -31,10 +32,6 @@ class App extends Component {
     })
   }
 
-
-  handleLessMinimum = (e) => {
-  
-  }
 
 // Is Available
   isAvailable = (e) => {
@@ -75,14 +72,7 @@ class App extends Component {
       filteredProducts: products
     })
   }
-
-  radioChange = (e) => {
-    this.setState( () => {
-      this.state.selectRadioOption= e.target.value
-    })     
-    
-  }
-
+  
   removeItem = (id) => {
     this.setState({
       filteredProducts: this.state.filteredProducts.filter(n => n.id !== id)
@@ -90,10 +80,44 @@ class App extends Component {
   }
   
   
+  radioChange = (e) => {
+    this.setState({
+      selectRadioOption: e.target.value
+    })     
+  }
+  
+  
+  onRadioValue = (e) => {
+    e.preventDefault()
+    
+    let temp = [];
+    if(this.state.selectRadioOption === 'Yes') {
+
+      for(let i of this.state.filteredProducts) {
+        if(i.price >= this.state.fixValueMax) {
+          temp.push(i)
+        }
+      }
+
+      this.setState({
+        filteredProducts: temp
+      })
+    } else {
+      for(let i of this.state.filteredProducts) {
+        if(i.price < this.state.fixValueMax) {
+          temp.push(i)
+        }
+      }
+      this.setState({
+        filteredProducts: temp
+      })
+    }
+  }
+
+
+
    
     render() {
-
-      // console.log(this.state.selectRadioOption)
     return (
       <div onClick={this.renderCart} className="main">
 
@@ -116,6 +140,9 @@ class App extends Component {
                   checked={this.state.selectRadioOption}
                   radioChange={this.radioChange}
                   radioDispay={this.radioDispay}
+
+                  onRadioValue={this.onRadioValue}
+                  radioValue={this.state.selectRadioOption}
                   
                   />
                 <hr/>
